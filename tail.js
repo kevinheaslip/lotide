@@ -13,8 +13,6 @@ const tail = function(arr) {
   return arr;
 };
 
-// function should not modify array, should return a new array, so a method that creates a new modified copy of the original, does not alter the original
-
 // test case: check if the original array is unmodified
 const words = ["Yo Yo", "Lighthouse", "Labs"];
 tail(words);
