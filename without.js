@@ -30,7 +30,7 @@ const without = function(source, itemsToRemove) {
       filtered.push(source[i]);
     }
   }
-  return filtered; 
+  return filtered;
 };
 
 // test to see if original array is modified
