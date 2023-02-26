@@ -7,19 +7,23 @@ const assertEqual = function(actual, expected) {
   }
 };
 
-// a function that compares if two input arrays are equal
+// a function that checks to see if two arrays are equal
 const eqArrays = function(arr1, arr2) {
-  let eqElements = false;
   if (arr1.length === arr2.length) {
-    for (let i = 0; i < arr1.length; i++) {
-      if (arr1[i] === arr2[i]) {
-        eqElements = true;
-      } else {
-        eqElements = false;
+    // checks if both arrays are empty, and if so, returns true
+    if (arr1.length === 0) {
+      return true;
+    } else {
+      // checks to see if the elements in both arrays are the same
+      for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i] !== arr2[i]) {
+          return false;
+        } else {
+          return true;
+        }
       }
     }
   }
-  return eqElements;
 };
 
 // test cases
@@ -27,3 +31,5 @@ assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true);
 assertEqual(eqArrays([1, 2, 3], [3, 2, 1]), false);
 assertEqual(eqArrays(["1", "2", "3"], ["1", "2", "3"]), true);
 assertEqual(eqArrays(["1", "2", "3"], ["1", "2", 3]), false);
+assertEqual(eqArrays([1, 2, 3], [3, 2, 3]), false);
+assertEqual(eqArrays([], []), true);
