@@ -1,12 +1,3 @@
-// checks if two inputs are equivalent
-const assertEqual = function(actual, expected) {
-  if (actual === expected) {
-    console.log(`🟢🟢🟢 Assertion Passed: ${actual} === ${expected}`);
-  } else {
-    console.log(`🔴🔴🔴 Assertion Failed: ${actual} !== ${expected}`);
-  }
-};
-
 // a function that checks to see if two arrays are equal
 const eqArrays = function(arr1, arr2) {
   if (arr1.length === arr2.length) {
@@ -25,24 +16,34 @@ const eqArrays = function(arr1, arr2) {
   }
 };
 
+// checks if two inputs are equivalent
+const assertEqual = function(actual, expected) {
+  if (actual === expected) {
+    console.log(`🟢🟢🟢 Assertion Passed: ${actual} === ${expected}`);
+  } else {
+    console.log(`🔴🔴🔴 Assertion Failed: ${actual} !== ${expected}`);
+  }
+};
+
 // returns true if both objects have identical keys with identical values.
-const eqObjects = function (object1, object2) {
+const eqObjects = function(object1, object2) {
   const object1Keys = Object.keys(object1);
   const object2Keys = Object.keys(object2);
   // if the lengths of the key arrays don't match, return false
   if (object1Keys.length !== object2Keys.length) {
     return false;
-  // check to see if the values of the keys in each array are arrays
-  } else {
-    for (const key of object1Keys) {
-      if (Array.isArray(object1Keys[key]) && Array.isArray(object2Keys[key])) {
-        // if they are, call eqArrays to check for equality
-        return eqArrays(object1Keys, object2Keys);
-      } else {
-        // if the values of the keys are primitives, compare them
-        if (object1Keys[key] !== object2Keys[key]) {
-          return false;
-        }
+  }
+  for (const key of object1Keys) {
+    // check to see if the values of the keys in each array are arrays
+    if (Array.isArray(object1[key]) && Array.isArray(object2[key])) {
+      // if they are, call eqArrays to check for equality
+      if (!eqArrays(object1[key], object2[key])) {
+        return false;
+      }
+    } else {
+      // if the values of the keys are primitives, compare them
+      if (object1[key] !== object2[key]) {
+        return false;
       }
     }
   }
